@@ -9,10 +9,14 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import {AppRoutingModule} from "./app-routing.module";
+import { MenuComponent } from './menu/menu.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

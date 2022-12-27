@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "library-app-pdss": {
+      "hosting": {
+        "library-app-pdss": [
+          "library-app-pdss"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "library-app-pdss"
+  }
+}

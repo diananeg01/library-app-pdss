@@ -91,6 +91,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "library-app-pdss:build:production",
+            "firebaseProject": "library-app-pdss",
+            "firebaseHostingSite": "library-app-pdss"
+          }
         }
       }
     }

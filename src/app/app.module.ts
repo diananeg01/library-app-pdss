@@ -11,21 +11,59 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import {AppRoutingModule} from "./app-routing.module";
 import { MenuComponent } from './menu/menu.component';
 import { MainComponent } from './main/main.component';
+import {BookPanelComponent} from "./Admin/admin-tab-view/book-panel/book-panel.component";
+import {AdminTabViewComponent} from "./Admin/admin-tab-view/admin-tab-view.component";
+import {UsersPanelComponent} from "./Admin/admin-tab-view/user-panel/user-panel.component";
+import {ToolbarModule} from "primeng/toolbar";
+import {TableModule} from "primeng/table";
+import {ButtonModule} from "primeng/button";
+import {RippleModule} from "primeng/ripple";
+import {ChipsModule} from "primeng/chips";
+import {DialogModule} from "primeng/dialog";
+import {InputSwitchModule} from "primeng/inputswitch";
+import {FormsModule} from "@angular/forms";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {ToastModule} from "primeng/toast";
+import {InputTextareaModule} from "primeng/inputtextarea";
+import {FileUploadModule} from "primeng/fileupload";
+import {CardModule} from "primeng/card";
+import {TabMenuModule} from "primeng/tabmenu";
+import {HttpClientModule} from "@angular/common/http";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    MainComponent
+    MainComponent,
+    AdminTabViewComponent,
+    BookPanelComponent,
+    UsersPanelComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    ToolbarModule,
+    TableModule,
+    ButtonModule,
+    RippleModule,
+    ChipsModule,
+    DialogModule,
+    InputSwitchModule,
+    FormsModule,
+    ConfirmDialogModule,
+    ToastModule,
+    InputTextareaModule,
+    FileUploadModule,
+    CardModule,
+    TabMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

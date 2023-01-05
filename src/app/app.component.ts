@@ -9,14 +9,5 @@ import {Router} from "@angular/router";
 export class AppComponent {
   title = 'library-app-pdss';
 
-  constructor(private router:Router) {
 
-  }
-  getText() {
-    console.log("Text");
-  }
-
-  getText1() {
-    this.router.navigate(['menu']);
-  }
 }

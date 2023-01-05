@@ -14,4 +14,8 @@ export class MenuComponent {
   goToMain() {
     this.router.navigate(['main'])
   }
+
+  goToAdmin() {
+    this.router.navigate(['admin'])
+  }
 }

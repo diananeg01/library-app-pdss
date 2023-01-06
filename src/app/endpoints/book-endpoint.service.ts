@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {BookModel} from "../model/book.model";
 import {Observable} from "rxjs";
 
-const BKE_API = 'https://library-app-pdss-default-rtdb.firebaseio.com/books';
+const BKE_API = 'https://library-app-pdss-default-rtdb.firebaseio.com/books.json';
 @Injectable({
   providedIn: 'root'
 })

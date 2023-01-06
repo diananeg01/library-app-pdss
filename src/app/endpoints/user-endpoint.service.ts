@@ -4,7 +4,7 @@ import {UserModel} from "../model/user.model";
 import {BookModel} from "../model/book.model";
 import {Observable} from "rxjs";
 
-const BKE_API = 'https://library-app-pdss-default-rtdb.firebaseio.com/users';
+const BKE_API = 'https://library-app-pdss-default-rtdb.firebaseio.com/users.json';
 
 @Injectable({
   providedIn: 'root'

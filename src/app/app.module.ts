@@ -30,6 +30,13 @@ import {CardModule} from "primeng/card";
 import {TabMenuModule} from "primeng/tabmenu";
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { LibraryAppComponent } from './library-app/library-app.component';
+import { MenubarComponent } from './library-app/menubar/menubar.component';
+import {MenubarModule} from "primeng/menubar";
+import { MainPageComponent } from './library-app/menubar/main-page/main-page.component';
+import { FavouritesPageComponent } from './library-app/menubar/favourites-page/favourites-page.component';
+import { RequestBookPageComponent } from './library-app/menubar/request-book-page/request-book-page.component';
+import {DataViewModule} from "primeng/dataview";
 
 @NgModule({
   declarations: [
@@ -38,7 +45,12 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MainComponent,
     AdminTabViewComponent,
     BookPanelComponent,
-    UsersPanelComponent
+    UsersPanelComponent,
+    LibraryAppComponent,
+    MenubarComponent,
+    MainPageComponent,
+    FavouritesPageComponent,
+    RequestBookPageComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +75,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     InputTextareaModule,
     FileUploadModule,
     CardModule,
-    TabMenuModule
+    TabMenuModule,
+    MenubarModule,
+    DataViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -85,7 +85,7 @@ export class BookPanelComponent implements OnInit {
     if (this.book.title?.trim()) {
       if (this.edit) {
 
-        this.bookEndpointService.editBook(this.book, this.oldTitle, this.oldPublishingHouse).subscribe();
+        this.bookEndpointService.editBook(this.book, this.book.book_uuid!).subscribe();
         this.edit = false;
         this.messageService.add({severity:'success', summary: 'Successful', detail: 'Book Updated', life: 3000});
         window.location.reload();

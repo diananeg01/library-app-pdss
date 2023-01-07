@@ -26,10 +26,18 @@ export class UsersPanelComponent implements OnInit {
               private userEndpointService: UserEndpointService) { }
 
   ngOnInit(): void {
+    let ids: string[] = [];
     this.userEndpointService.getUsers().subscribe({
       next: users => {
         console.log(users)
+        ids = Object.keys(users);
         this.users = Object.values(users);
+
+        let i;
+        for(i = 0; i < this.users.length; i++) {
+          this.users[i].id = ids[i];
+        }
+        console.log(this.users);
       }
     })
     console.log("users-panel");
@@ -55,7 +63,6 @@ export class UsersPanelComponent implements OnInit {
         this.users = this.users.filter(val => val.id !== user.id);
         this.user = {};
         this.messageService.add({severity:'success', summary: 'Successful', detail: 'User Deleted!', life: 3000});
-        window.location.reload()
       }
     });
   }
@@ -72,7 +79,6 @@ export class UsersPanelComponent implements OnInit {
         this.users = this.users.filter(val => !this.selectedUsers.includes(val));
         this.selectedUsers = [];
         this.messageService.add({severity:'success', summary: 'Successful', detail: 'Users Deleted!', life: 3000});
-        window.location.reload()
       }
     });
   }

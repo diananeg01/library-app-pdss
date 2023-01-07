@@ -9,15 +9,12 @@ import {BookEndpointService} from "../../../endpoints/book-endpoint.service";
   selector: 'app-book-panel',
   templateUrl: './book-panel.component.html',
   styleUrls: ['./book-panel.component.scss'],
-  providers: [MessageService, ConfirmationService, BookEndpointService]
+  providers: [MessageService, ConfirmationService]
 })
 export class BookPanelComponent implements OnInit {
-
   books: BookModel[] = [];
   selectedBooks: BookModel[] = [];
   book: BookModel = {};
-  oldTitle: string = '';
-  oldPublishingHouse: string = '';
   bookDialog: boolean = false;
   submitted: boolean = false;
   edit: boolean = false;
@@ -27,8 +24,19 @@ export class BookPanelComponent implements OnInit {
               private bookEndpointService: BookEndpointService) { }
 
   ngOnInit(): void {
+    let ids: string[] = [];
     this.bookEndpointService.getBooks().subscribe({
-      next: books => this.books = books
+      next: (books: BookModel[]) => {
+        console.log(books)
+        ids = Object.keys(books);
+        this.books = Object.values(books);
+
+        let i;
+        for(i = 0; i < this.books.length; i++) {
+          this.books[i].id = ids[i];
+        }
+        console.log(this.books);
+      }
     })
     console.log("book-panel");
   }
@@ -40,9 +48,8 @@ export class BookPanelComponent implements OnInit {
   }
 
   editBook(book: BookModel) {
-    this.book = {...book};
-    this.oldTitle = book.title!;
-    this.oldPublishingHouse = book.publishingHouse!;
+    this.book = book;
+    console.log(this.books)
     this.bookDialog = true;
     this.edit = true;
   }
@@ -53,11 +60,10 @@ export class BookPanelComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.bookEndpointService.deleteBook(book.book_uuid!).subscribe();
-        this.books = this.books.filter(val => val.book_uuid !== book.book_uuid);
+        this.bookEndpointService.deleteBook(book.id!).subscribe();
+        this.books = this.books.filter(val => val.id !== book.id);
         this.book = {};
         this.messageService.add({severity:'success', summary: 'Successful', detail: 'Book Deleted!', life: 3000});
-        window.location.reload()
       }
     });
   }
@@ -69,12 +75,11 @@ export class BookPanelComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.selectedBooks.forEach(selectedBook => {
-          this.bookEndpointService.deleteBook(selectedBook.book_uuid!).subscribe();
+          this.bookEndpointService.deleteBook(selectedBook.id!).subscribe();
         })
         this.books = this.books.filter(val => !this.selectedBooks.includes(val));
         this.selectedBooks = [];
         this.messageService.add({severity:'success', summary: 'Successful', detail: 'Books Deleted!', life: 3000});
-        window.location.reload()
       }
     });
   }
@@ -84,11 +89,11 @@ export class BookPanelComponent implements OnInit {
 
     if (this.book.title?.trim()) {
       if (this.edit) {
-
-        this.bookEndpointService.editBook(this.book, this.book.book_uuid!).subscribe();
+        console.log(this.book.id)
+        console.log(this.book.title)
+        this.bookEndpointService.editBook(this.book, this.book.id!).subscribe();
         this.edit = false;
         this.messageService.add({severity:'success', summary: 'Successful', detail: 'Book Updated', life: 3000});
-        window.location.reload();
       }
       else {
         this.books.push(this.book);

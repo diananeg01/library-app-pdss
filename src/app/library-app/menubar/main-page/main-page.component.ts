@@ -7,8 +7,7 @@ import {BookEndpointService} from "../../../endpoints/book-endpoint.service";
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.scss'],
-  providers: [UserEndpointService, BookEndpointService]
+  styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent {
   books: BookModel[] = [];
@@ -31,7 +30,7 @@ export class MainPageComponent {
     this.username = JSON.parse(localStorage.getItem('username')!);
     console.log(this.username)
     this.bookEndpointService.getBooks().subscribe({
-      next: books => this.books = books
+      next: books => this.books = Object.values(books)
     });
   }
 

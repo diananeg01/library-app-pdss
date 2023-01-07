@@ -15,7 +15,7 @@ export class BookEndpointService {
     return this.http.get(BKE_API+'.json');
   }
 
-  getBookById(id: number) {
+  getBookById(id: string) {
     return this.http.get(BKE_API + `/${id}.json`);
   }
 
@@ -24,14 +24,14 @@ export class BookEndpointService {
   }
 
   addBook(newBook: BookModel) {
-    return this.http.post(BKE_API + '.json', {...newBook});
+    return this.http.post(BKE_API + '.json', newBook);
   }
 
-  editBook(newBook: BookModel, id: number) {
-    return this.http.put(BKE_API + `/${id}.json`, {...newBook});
+  editBook(newBook: BookModel, title: string) {
+    return this.http.patch(BKE_API + `/${title}.json`, newBook);
   }
 
-  deleteBook(id: number) {
+  deleteBook(id: string) {
     return this.http.delete(BKE_API + `/${id}.json`);
   }
 }

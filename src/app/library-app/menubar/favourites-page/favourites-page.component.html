@@ -1,6 +1,6 @@
 <p-card [style]="{'margin-top': '15px'}">
   <h1>Your favourites books</h1>
-  <p>Here you can find all books from our database that yoy marked as favourite</p>
+  <p>Here you can find all books from our database that you marked as favourite</p>
   <p-dataView #dv [value]="favouriteBooks" [paginator]="true" [rows]="6" filterBy="name"
               [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
     <ng-template pTemplate="header">
@@ -21,7 +21,7 @@
             <div class="product-description">{{book.description}}</div>
           </div>
           <div class="product-list-action">
-            <span [class]="'product-badge status-' + book.category">{{book.category}}</span>
+            <p-chip [label]="book.category" icon="pi pi-tag" styleClass="p-mr-2 custom-chip"></p-chip>
           </div>
         </div>
       </div>
@@ -30,11 +30,7 @@
       <div class="col-12 md:col-4">
         <div class="product-grid-item card">
           <div class="product-grid-item-top">
-            <div>
-              <i class="pi pi-tag product-category-icon"></i>
-              <span class="product-category">{{book.category}}</span>
-            </div>
-            <span [class]="'product-badge status-' + book.category">{{book.category}}</span>
+              <p-chip [label]="book.category" icon="pi pi-tag" styleClass="p-mr-2 custom-chip"></p-chip>
           </div>
           <div class="product-grid-item-content">
             <div class="product-name"><i>{{book.title}}</i>, {{book.author}}</div>

@@ -1,6 +1,18 @@
 <div>
   <p-card>
-    <p-tabMenu [model]="items" [activeItem]="activeItem" [style]="{margin: '5px 0 25px 0'}"></p-tabMenu>
+    <p-tabMenu [model]="items" [activeItem]="activeItem" [style]="{margin: '5px 0 25px 0'}">
+      <ng-template pTemplate="end">
+        <button pButton pRipple
+                type="button"
+                class="flex align-self-center"
+                label="Sign out"
+                icon="pi pi-sign-out"
+                (click)="signOut()"
+                [style]="{'margin-left':'0.25em'}"
+        ></button>
+      </ng-template>
+    </p-tabMenu>
     <router-outlet></router-outlet>
   </p-card>
 </div>
+<p-toast></p-toast>

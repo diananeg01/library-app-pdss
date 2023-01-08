@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {MenuItem} from "primeng/api";
+import {MenuItem, MessageService} from "primeng/api";
+import {Router} from "@angular/router";
+import {Auth, signOut} from "@angular/fire/auth";
 
 @Component({
   selector: 'app-admin-tab-view',
@@ -21,7 +23,9 @@ export class AdminTabViewComponent implements OnInit {
   ];
   activeItem: MenuItem;
 
-  constructor() {
+  constructor(private router: Router,
+              private auth: Auth,
+              private messageService: MessageService) {
     this.activeItem = this.items[0];
   }
 
@@ -29,4 +33,13 @@ export class AdminTabViewComponent implements OnInit {
     console.log("admin");
   }
 
+  signOut() {
+    signOut(this.auth).then(() => {
+      // Sign-out successful.
+      this.router.navigate(['']);
+    }).catch((error) => {
+      // An error happened.
+      this.messageService.add({severity:'error', summary: 'Error', detail: error.message, life: 3000});
+    });
+  }
 }

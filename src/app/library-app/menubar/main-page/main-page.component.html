@@ -21,8 +21,7 @@
           </div>
           <div class="product-list-action">
             <div>
-              <i class="pi pi-tag product-category-icon"></i>
-              <span class="product-category">{{book.category}}</span>
+              <p-chip [label]="book.category" icon="pi pi-tag" styleClass="p-mr-2 custom-chip"></p-chip>
             </div>
             <button pButton pRipple icon="pi pi-star" label="Add to Favourites" (click)="addToFavourite(book)"></button>
           </div>
@@ -34,8 +33,7 @@
         <div class="product-grid-item card">
           <div class="product-grid-item-top">
             <div>
-              <i class="pi pi-tag product-category-icon"></i>
-              <span class="product-category">{{book.category}}</span>
+              <p-chip [label]="book.category" icon="pi pi-tag" styleClass="p-mr-2 custom-chip"></p-chip>
             </div>
           </div>
           <div class="product-grid-item-content">

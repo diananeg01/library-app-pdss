@@ -8,7 +8,7 @@ import {UserEndpointService} from "../../../endpoints/user-endpoint.service";
   selector: 'app-users-panel',
   templateUrl: './user-panel.component.html',
   styleUrls: ['./user-panel.component.scss'],
-  providers: [MessageService, ConfirmationService, UserEndpointService]
+  providers: [MessageService, ConfirmationService]
 })
 export class UsersPanelComponent implements OnInit {
 
@@ -26,10 +26,18 @@ export class UsersPanelComponent implements OnInit {
               private userEndpointService: UserEndpointService) { }
 
   ngOnInit(): void {
+    let ids: string[] = [];
     this.userEndpointService.getUsers().subscribe({
       next: users => {
         console.log(users)
-        this.users = users;
+        ids = Object.keys(users);
+        this.users = Object.values(users);
+
+        let i;
+        for(i = 0; i < this.users.length; i++) {
+          this.users[i].id = ids[i];
+        }
+        console.log(this.users);
       }
     })
     console.log("users-panel");
@@ -51,11 +59,10 @@ export class UsersPanelComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.userEndpointService.deleteUser(user.user_uuid!).subscribe();
-        this.users = this.users.filter(val => val.user_uuid !== user.user_uuid);
+        this.userEndpointService.deleteUser(user.id!).subscribe();
+        this.users = this.users.filter(val => val.id !== user.id);
         this.user = {};
         this.messageService.add({severity:'success', summary: 'Successful', detail: 'User Deleted!', life: 3000});
-        window.location.reload()
       }
     });
   }
@@ -67,12 +74,11 @@ export class UsersPanelComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.selectedUsers.forEach(selectedUser => {
-          this.userEndpointService.deleteUser(selectedUser.user_uuid!).subscribe();
+          this.userEndpointService.deleteUser(selectedUser.id!).subscribe();
         });
         this.users = this.users.filter(val => !this.selectedUsers.includes(val));
         this.selectedUsers = [];
         this.messageService.add({severity:'success', summary: 'Successful', detail: 'Users Deleted!', life: 3000});
-        window.location.reload()
       }
     });
   }

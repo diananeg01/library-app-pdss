@@ -4,7 +4,7 @@ import {UserModel} from "../model/user.model";
 import {BookModel} from "../model/book.model";
 import {Observable} from "rxjs";
 
-const BKE_API = 'https://library-app-pdss-default-rtdb.firebaseio.com/users';
+const BKE_API = 'https://library-app-pdss-default-rtdb.firebaseio.com/user';
 
 @Injectable({
   providedIn: 'root'
@@ -22,23 +22,23 @@ export class UserEndpointService {
   }
 
   getUsers(): Observable<any> {
-    return this.http.get(BKE_API);
+    return this.http.get(BKE_API + `.json`);
   }
 
   getUserWithUsername(username: string) {
-    return this.http.get(BKE_API + `/username/${username}`);
+    return this.http.get(BKE_API + `/${username}.json`);
   }
 
   getUserWithEmail(email: string) {
-    return this.http.get(BKE_API + `/email/${email}`);
+    return this.http.get(BKE_API + `/${email}.json`);
   }
 
   editUser(newUser: UserModel, email: string) {
-    return this.http.put(BKE_API + `/edit?oldEmail=${email}`, {...newUser});
+    return this.http.patch(BKE_API + `/${email}.json`, newUser);
   }
 
-  deleteUser(id: number) {
-    return this.http.delete(BKE_API + `/delete?id=${id}`);
+  deleteUser(id: string) {
+    return this.http.delete(BKE_API + `/${id}.json`);
   }
 
   addBookToFavourites(username: string, book: BookModel) {

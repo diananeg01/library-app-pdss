@@ -37,6 +37,9 @@ import { MainPageComponent } from './library-app/menubar/main-page/main-page.com
 import { FavouritesPageComponent } from './library-app/menubar/favourites-page/favourites-page.component';
 import { RequestBookPageComponent } from './library-app/menubar/request-book-page/request-book-page.component';
 import {DataViewModule} from "primeng/dataview";
+import {BookEndpointService} from "./endpoints/book-endpoint.service";
+import {UserEndpointService} from "./endpoints/user-endpoint.service";
+import {ChipModule} from "primeng/chip";
 
 @NgModule({
   declarations: [
@@ -77,9 +80,13 @@ import {DataViewModule} from "primeng/dataview";
     CardModule,
     TabMenuModule,
     MenubarModule,
-    DataViewModule
+    DataViewModule,
+    ChipModule
   ],
-  providers: [],
+  providers: [
+    BookEndpointService,
+    UserEndpointService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

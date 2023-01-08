@@ -47,6 +47,7 @@ import { ConfirmComponent } from './sign-up/detail-sign-up/confirm/confirm.compo
 import {StepsModule} from "primeng/steps";
 import { SignInComponent } from './sign-in/sign-in.component';
 import {MessageService} from "primeng/api";
+import {GoogleAuthProvider} from "firebase/auth";
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import {MessageService} from "primeng/api";
   providers: [
     BookEndpointService,
     UserEndpointService,
-    MessageService
+    MessageService,
+    GoogleAuthProvider
   ],
   bootstrap: [AppComponent]
 })

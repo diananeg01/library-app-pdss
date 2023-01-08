@@ -40,6 +40,11 @@ import {DataViewModule} from "primeng/dataview";
 import {BookEndpointService} from "./endpoints/book-endpoint.service";
 import {UserEndpointService} from "./endpoints/user-endpoint.service";
 import {ChipModule} from "primeng/chip";
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { DetailSignUpComponent } from './sign-up/detail-sign-up/detail-sign-up.component';
+import { PersonalInformationComponent } from './sign-up/detail-sign-up/personal-information/personal-information.component';
+import { ConfirmComponent } from './sign-up/detail-sign-up/confirm/confirm.component';
+import {StepsModule} from "primeng/steps";
 
 @NgModule({
   declarations: [
@@ -53,7 +58,11 @@ import {ChipModule} from "primeng/chip";
     MenubarComponent,
     MainPageComponent,
     FavouritesPageComponent,
-    RequestBookPageComponent
+    RequestBookPageComponent,
+    SignUpComponent,
+    DetailSignUpComponent,
+    PersonalInformationComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +90,8 @@ import {ChipModule} from "primeng/chip";
     TabMenuModule,
     MenubarModule,
     DataViewModule,
-    ChipModule
+    ChipModule,
+    StepsModule
   ],
   providers: [
     BookEndpointService,

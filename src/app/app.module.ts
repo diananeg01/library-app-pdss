@@ -45,6 +45,8 @@ import { DetailSignUpComponent } from './sign-up/detail-sign-up/detail-sign-up.c
 import { PersonalInformationComponent } from './sign-up/detail-sign-up/personal-information/personal-information.component';
 import { ConfirmComponent } from './sign-up/detail-sign-up/confirm/confirm.component';
 import {StepsModule} from "primeng/steps";
+import { SignInComponent } from './sign-in/sign-in.component';
+import {MessageService} from "primeng/api";
 
 @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ import {StepsModule} from "primeng/steps";
     SignUpComponent,
     DetailSignUpComponent,
     PersonalInformationComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +98,8 @@ import {StepsModule} from "primeng/steps";
   ],
   providers: [
     BookEndpointService,
-    UserEndpointService
+    UserEndpointService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

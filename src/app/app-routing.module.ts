@@ -13,9 +13,10 @@ import {
   PersonalInformationComponent
 } from "./sign-up/detail-sign-up/personal-information/personal-information.component";
 import {ConfirmComponent} from "./sign-up/detail-sign-up/confirm/confirm.component";
+import {SignInComponent} from "./sign-in/sign-in.component";
 
 const routes : Routes = [
-  // { path: 'sign-in', component: SignInComponent },
+  { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-up-details', component: DetailSignUpComponent, children: [
       { path: 'personal-information', component: PersonalInformationComponent },
@@ -34,8 +35,8 @@ const routes : Routes = [
     { path: 'users', component: UsersPanelComponent },
     { path: '**', redirectTo: 'books', pathMatch: 'full' }
   ]},
-  // { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
-  // { path: '**', redirectTo: 'sign-in' }
+  { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
+  { path: '**', redirectTo: 'sign-in' }
 ]
 
 

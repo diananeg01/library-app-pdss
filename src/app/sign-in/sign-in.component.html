@@ -1,0 +1,56 @@
+
+
+<div class="sign-in">
+  <p-card>
+    <ng-template pTemplate="title">
+      <div>
+        <img src="assets/bookly.png" [style]="{'width': '50px'}" alt="bookly">
+        <h2>Welcome back.</h2>
+      </div>
+      <p>Don't have an account? <a routerLink="../sign-up">Sign up</a></p>
+            <button pButton pRipple
+                    label="Sign in with Google"
+                    class="p-button-outlined"
+                    icon="pi pi-google"
+                    (click)="loginWithGoogle()"
+                    [style]="{width: '100%'}"
+            ></button>
+    </ng-template>
+    <div>
+      <table>
+        <tr>
+          <td [style]="{width: '45%', 'border-bottom': '1px solid #ced4da', 'border-collapse': 'collapse'}"></td>
+          <td [style]="{width: '10%'}" rowspan="2">or</td>
+          <td [style]="{width: '45%', 'border-bottom': '1px solid #ced4da', 'border-collapse': 'collapse'}"></td>
+        </tr>
+        <tr>
+          <td [style]="{width: '45%', 'border-collapse': 'collapse'}"></td>
+          <td [style]="{width: '45%', 'border-collapse': 'collapse'}"></td>
+        </tr>
+      </table>
+    </div>
+    <ng-template pTemplate="content">
+      <div class="field">
+        <span class="p-float-label">
+          <input type="email" id="email" pInputText [(ngModel)]="email" [style]="{width: '100%'}">
+          <label for="email">Email</label>
+        </span>
+      </div>
+      <div class="field">
+        <span class="p-float-label">
+          <input pInputText type="password" id="password" [(ngModel)]="password" [style]="{width: '100%'}">
+          <label for="password">Password</label>
+        </span>
+      </div>
+      <div>
+        <button pButton pRipple
+                label="Sign in"
+                class="p-button-outlined"
+                (click)="signIn()"
+                [style]="{width: '100%'}"
+        ></button>
+      </div>
+    </ng-template>
+  </p-card>
+</div>
+<p-toast></p-toast>

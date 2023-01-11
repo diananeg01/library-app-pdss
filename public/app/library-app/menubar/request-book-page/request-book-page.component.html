@@ -1,0 +1,43 @@
+<p-card [style]="{'margin-top': '15px'}">
+  <h1>Request a book.</h1>
+  <ng-template pTemplate="content">
+    <div class="">
+      <div class="field">
+        <span class="p-float-label">
+          <input type="text" id="title" pInputText [(ngModel)]="newBook.title" [style]="{width: '100%'}">
+          <label for="title">Title</label>
+        </span>
+      </div>
+      <div class="field">
+        <span class="p-float-label">
+          <input type="email" id="author" pInputText [(ngModel)]="newBook.author" [style]="{width: '100%'}">
+          <label for="author">Author</label>
+        </span>
+      </div>
+    </div>
+    <div class="">
+      <div class="field">
+        <span class="p-float-label">
+          <input type="text" id="publishingHouse" pInputText [(ngModel)]="newBook.publishingHouse"
+                 [style]="{width: '100%'}">
+          <label for="publishingHouse">Publishing House</label>
+        </span>
+      </div>
+      <div class="field">
+        <span class="p-float-label">
+          <input type="email" id="category" pInputText [(ngModel)]="newBook.category" [style]="{width: '100%'}">
+          <label for="category">Category</label>
+        </span>
+      </div>
+    </div>
+    <div class="field">
+        <span class="p-float-label">
+          <input type="email" id="description" pInputTextarea [(ngModel)]="newBook.description"
+                 [style]="{width: '100%'}">
+          <label for="category">Description</label>
+        </span>
+    </div>
+    <button pButton pRipple
+            (click)="onSubmit()"></button>
+  </ng-template>
+</p-card>

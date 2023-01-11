@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {MenuItem, MessageService} from "primeng/api";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Auth, signOut} from "@angular/fire/auth";
 
 @Component({
@@ -10,10 +10,12 @@ import {Auth, signOut} from "@angular/fire/auth";
 })
 export class MenubarComponent {
   items: MenuItem[] = [];
+  username: any;
 
   constructor(private router: Router,
               private auth: Auth,
-              private messageService: MessageService) {
+              private messageService: MessageService,
+              private route: ActivatedRoute) {
     this.items = [
       {
         label: 'Main Page',
@@ -35,6 +37,10 @@ export class MenubarComponent {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.username = params['username'];
+      console.log(this.username)
+    });
   }
 
   signOut() {

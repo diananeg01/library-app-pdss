@@ -34,7 +34,8 @@ export class SignUpComponent {
         const token = credential!.accessToken;
         // The signed-in user info.
         const user = result.user;
-        this.router.navigate(['sign-up/personal-information']);
+        const username = user.email?.substring(0, user.email?.indexOf('@'));
+        this.router.navigateByUrl(`/${username}/main-page`);
       }).catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
@@ -69,7 +70,7 @@ export class SignUpComponent {
           email: this.email
         });
         this.userEndpointService.signUp(this.username, this.email, this.password);
-        this.router.navigate(["sign-up-details/personal-information"]);
+        this.router.navigate(["main-page"]);
       })
       .catch((error) => {
         const errorCode = error.code;

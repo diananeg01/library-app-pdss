@@ -1,6 +1,11 @@
 <div>
   <p-card>
-    <p-tabMenu [model]="items" [activeItem]="activeItem" [style]="{margin: '5px 0 25px 0'}">
+    <p-menubar [model]="items" [style]="{margin: '5px 0 25px 0'}">
+      <ng-template pTemplate="start">
+        <img src="assets/bookly.png"
+             width="65px"
+        >
+      </ng-template>
       <ng-template pTemplate="end">
         <button pButton pRipple
                 type="button"
@@ -11,7 +16,7 @@
                 [style]="{'margin-left':'0.25em'}"
         ></button>
       </ng-template>
-    </p-tabMenu>
+    </p-menubar>
     <router-outlet></router-outlet>
   </p-card>
 </div>

@@ -1,0 +1,125 @@
+<div class="card">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+              (click)="openNew()"></button>
+      <button pButton pRipple label="Delete selected books" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedBooks()"
+              [disabled]="!selectedBooks || !selectedBooks.length"></button>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+      <p-fileUpload mode="basic" accept=".pdf" [maxFileSize]="1000000" label="Import" chooseLabel="Import"
+                    class="p-mr-2 p-d-inline-block"></p-fileUpload>
+    </ng-template>
+  </p-toolbar>
+
+  <p-table #dt [value]="books" [rows]="10" [paginator]="true"
+           [globalFilterFields]="['title','author','publishingHouse','category']"
+           [(selection)]="selectedBooks" [rowHover]="true" dataKey="id"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+           [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">Manage books</h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                 placeholder="Search..."/>
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th [style]="{width: '3rem'}">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="title">
+          Title
+          <p-sortIcon field="title"></p-sortIcon>
+        </th>
+        <th pSortableColumn="author">
+          Author
+          <p-sortIcon field="author"></p-sortIcon>
+        </th>
+        <th pSortableColumn="publishingHouse">
+          Publishing House
+          <p-sortIcon field="publishingHouse"></p-sortIcon>
+        </th>
+        <th pSortableColumn="category">
+          Category
+          <p-sortIcon field="category"></p-sortIcon>
+        </th>
+        <!--     <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon></th>-->
+        <!--        <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th>-->
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-book>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="book"></p-tableCheckbox>
+        </td>
+        <td>{{book.title}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.publishingHouse}}</td>
+        <td>{{book.category}}</td>
+        <!--     <td><p-rating [ngModel]="book.rating" [readonly]="true" [cancel]="false"></p-rating></td>-->
+        <!--        <td><span [class]="'product-badge status-' + book.inventoryStatus.toLowerCase()">{{book.inventoryStatus}}</span></td>-->
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+                  (click)="editBook(book)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                  (click)="deleteBook(book)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        In total there are {{books ? books.length : 0 }} books.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="bookDialog" [style]="{width: '450px'}" header="Book Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="name">Name</label>
+      <input type="text" pInputText id="name" [(ngModel)]="book.title" required autofocus/>
+      <small class="p-invalid" *ngIf="submitted && !book.title">Name is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="name">Author</label>
+      <input type="text" pInputText id="author" [(ngModel)]="book.author" required autofocus/>
+      <small class="p-invalid" *ngIf="submitted && !book.author">Author is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="name">Publishing House</label>
+      <input type="text" pInputText id="publishingHouse" [(ngModel)]="book.publishingHouse" required autofocus/>
+      <small class="p-invalid" *ngIf="submitted && !book.publishingHouse">Publishing House is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="description">Description</label>
+      <textarea id="description" pInputTextarea [(ngModel)]="book.description" required rows="3" cols="20"></textarea>
+    </div>
+    <div class="p-field">
+      <label for="Category">Category</label>
+      <input type="text" pInputText id="category" [(ngModel)]="book.category" required autofocus/> <!--autocomplete -->
+      <small class="p-invalid" *ngIf="submitted && !book.category">Category is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="cover">Cover (link to photo)</label>
+      <input type="text" pInputText id="cover" [(ngModel)]="book.cover" required autofocus/> <!--autocomplete -->
+      <small class="p-invalid" *ngIf="submitted && !book.cover">Cover is required.</small>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveBook()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+<p-toast></p-toast>
+

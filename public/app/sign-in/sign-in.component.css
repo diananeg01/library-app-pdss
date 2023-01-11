@@ -1,0 +1,24 @@
+.sign-in {
+  width: 500px;
+  margin: auto;
+}
+
+table {
+  width: 100%;
+}
+
+td {
+  width: 30%;
+  text-align: center;
+  font-size: 8px;
+  color: #b3b9c1;
+}
+
+p{
+  font-size: 13px;
+}
+
+a {
+  color: #ffc12b;
+  text-decoration: none;
+}

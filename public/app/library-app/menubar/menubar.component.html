@@ -1,0 +1,19 @@
+<p-menubar [model]="items">
+  <ng-template pTemplate="start">
+    <img src="assets/bookly.png"
+         width="65px"
+    >
+  </ng-template>
+  <ng-template pTemplate="end">
+    <button pButton pRipple
+            type="button"
+            class="flex align-self-center"
+            label="Sign out"
+            icon="pi pi-sign-out"
+            (click)="signOut()"
+            [style]="{'margin-left':'0.25em'}"
+    ></button>
+  </ng-template>
+</p-menubar>
+<router-outlet></router-outlet>
+<p-toast></p-toast>
